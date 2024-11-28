@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        /* Fundo da página (azul mais escuro, mas não mais escuro que o quadrado) */
+        body {
+            background-color: #4a90e2; /* Azul mais escuro, mas não tão escuro quanto o quadrado */
+        }
+
+        /* Estilo do container */
+        .container {
+            margin-top: 50px;
+        }
+
+        /* Informações pessoais do paciente (fora do quadrado) */
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px; /* Espaçamento entre as informações pessoais e o quadrado */
+        }
+
+        .user-info h2, .user-info p {
+            margin: 5px 0;
+        }
+
+        /* Estilo do quadrado (card) com fundo azul mais escuro */
+        .card {
+            padding: 15px;
+            width: 300px; /* Tamanho reduzido do quadrado */
+            background-color: #0077b6; /* Azul escuro */
+            color: white; /* Texto branco */
+        }
+
+        .card-content {
+            padding: 10px;
+            word-wrap: break-word; /* Garante que o texto quebre linha e não saia para fora */
+        }
+
+        /* Botão de sair */
+        .sair-button {
+            margin-top: 30px; /* Deixa o botão de sair mais embaixo */
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Alerta no lado direito da tela */
+        .alertas {
+            position: fixed;
+            right: 20px; /* Posiciona a mensagem do lado direito */
+            top: 50%; /* Centraliza verticalmente */
+            transform: translateY(-50%); /* Ajusta para centralizar exatamente */
+            color: yellow; /* Cor amarela */
+            font-size: 18px; /* Tamanho da fonte */
+            font-weight: bold; /* Deixa o texto em negrito */
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo semitransparente para o texto */
+            padding: 10px;
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Informações pessoais do paciente (fora do quadrado) -->
+        <div class="user-info">
+            <h2 th:text="${usuario.nomeCompleto}">Nome Completo</h2>
+            <p><strong>Idade:</strong> <span th:text="${usuario.idade}">Idade</span></p>
+            <p><strong>Tipo Sanguíneo:</strong> <span th:text="${usuario.tipoSanguineo}">Tipo Sanguíneo</span></p>
+            <p><strong>Número do SUS:</strong> <span th:text="${usuario.numeroSUS}">Número SUS</span></p>
+        </div>
+
+        <!-- Quadrado com informações adicionais dentro -->
+        <div class="card">
+            <div class="card-content">
+                <h5>Informações Pessoais Cadastradas</h5>
+                <p th:text="${usuario.informacoesPessoais}">Informações adicionais do paciente.</p>
+            </div>
+        </div>
+
+        <!-- Botão para sair -->
+        <div class="sair-button">
+            <a href="/logout" class="btn red">Sair</a>
+        </div>
+    </div>
+
+    <!-- Alerta enviado pelo profissional -->
+    <div class="alertas">
+        Alertas enviados pelo profissional
+    </div>
+
+</body>
+</html>

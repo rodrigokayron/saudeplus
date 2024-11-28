@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro</h2>
+        
+        <!-- Formulário de Cadastro -->
+        <form action="/cadastro" method="post" th:object="${usuario}">
+            
+            <!-- Campo de Nome Completo -->
+            <div class="input-field">
+                <input type="text" id="nomeCompleto" name="nomeCompleto" th:field="*{nomeCompleto}" required>
+                <label for="nomeCompleto">Nome Completo</label>
+            </div>
+
+            <!-- Campo de Idade -->
+            <div class="input-field">
+                <input type="number" id="idade" name="idade" th:field="*{idade}" required>
+                <label for="idade">Idade</label>
+            </div>
+            
+            <!-- Campo de Tipo Sanguíneo -->
+            <div class="input-field">
+                <input type="text" id="tipoSanguineo" name="tipoSanguineo" th:field="*{tipoSanguineo}" required>
+                <label for="tipoSanguineo">Tipo Sanguíneo</label>
+            </div>
+
+            <!-- Campo de Número SUS -->
+            <div class="input-field">
+                <input type="text" id="numeroSUS" name="numeroSUS" th:field="*{numeroSUS}" required>
+                <label for="numeroSUS">Número do SUS</label>
+            </div>
+
+            <!-- Campo de Informações Pessoais -->
+            <div class="input-field">
+                <textarea id="informacoesPessoais" name="informacoesPessoais" th:field="*{informacoesPessoais}" class="materialize-textarea" required></textarea>
+                <label for="informacoesPessoais">Informações Pessoais</label>
+            </div>
+
+            <!-- Campo de Username -->
+            <div class="input-field">
+                <input type="text" id="username" name="username" th:field="*{username}" required>
+                <label for="username">Username</label>
+            </div>
+            
+            <!-- Campo de Password -->
+            <div class="input-field">
+                <input type="password" id="password" name="password" th:field="*{password}" required>
+                <label for="password">Password</label>
+            </div>
+            
+            <!-- Botão de Cadastro -->
+            <button class="btn" type="submit">Cadastrar</button>
+        </form>
+        
+        <!-- Exibição de erro global (caso o usuário já exista, por exemplo) -->
+        <p th:if="${erro}" th:text="${erro}" class="red-text"></p>
+        
+        <!-- Link para página de login -->
+        <a href="/login">Já tem conta? Faça login!</a>
+    </div>
+</body>
+</html>
